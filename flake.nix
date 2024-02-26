@@ -4,7 +4,7 @@
   outputs = { home-manager, nixpkgs, ... }@inputs: let
     username = "demeter";
     hostname = "nixos";
-    system = "x86_64-linux";
+    system = "aarch64-linux";
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
