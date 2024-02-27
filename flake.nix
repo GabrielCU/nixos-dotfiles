@@ -1,29 +1,25 @@
 {
   description = "Home Manager and NixOS configuration of Aylur";
 
-  outputs = { home-manager, nixpkgs, ... }@inputs: let
-    username = "demeter";
+  outputs = { home-manager, nixpkgs, ... }@inputs:
+  let
+    username = "gabriel";
     hostname = "nixos";
     system = "aarch64-linux";
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
     };
-    asztal = pkgs.callPackage ./ags { inherit inputs; };
   in {
     nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
       inherit system;
-      specialArgs = { inherit inputs username hostname asztal; };
       modules = [ ./nixos/configuration.nix ];
     };
 
     homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      extraSpecialArgs = { inherit inputs username asztal; };
       modules = [ ./home-manager/home.nix ];
     };
-
-    packages.${system}.default = asztal;
   };
 
   inputs = {
@@ -38,9 +34,7 @@
     hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
 
     matugen.url = "github:InioX/matugen";
-    ags.url = "github:Aylur/ags";
-    stm.url = "github:Aylur/stm";
-
+   
     lf-icons = {
       url = "github:gokcehan/lf";
       flake = false;
