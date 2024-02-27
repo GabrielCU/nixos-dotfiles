@@ -5,7 +5,7 @@
   let
     username = "gabriel";
     hostname = "nixos";
-    system = "aarch64-linux";
+    system = "x86_64-linux";
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
