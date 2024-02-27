@@ -36,6 +36,7 @@
     neovim
     git
     wget
+    vscode
   ];
 
   # services
